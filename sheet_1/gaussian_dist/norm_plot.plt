@@ -9,7 +9,7 @@ plot "out_10.dat" u ($1):(s($1))
 plot "out_10.dat" u (bin($1, binwidth)):(1.0/(binwidth*sum)) smooth freq w boxes
 
 set term png
-set output "hist_10.png"
+set output "hist_100.png"
 replot
 set term x11
 

@@ -29,14 +29,14 @@ double gen_rand(double N) {// generate N random numbers and return average
 int main() {
 	std::vector<double> store;
 	const double batches = 100000;
-	const double N = 10.;
+	const double N = 100.;
 	for (int i = 0; i < batches; ++i) {
 		//std::cout << gen_rand(N) << std::endl;
 		store.push_back(gen_rand(N));
 	}
 	
 	std::ofstream myfile;
-	myfile.open("out_10.dat");
+	myfile.open("out_100.dat");
 	for (auto it = store.begin(); it < store.end(); ++it) {
 		myfile << *it << std::endl;
 	}
