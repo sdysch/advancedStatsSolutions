@@ -1,6 +1,5 @@
 set terminal postscript eps color enhanced size 10,5
 set output 'plot.eps';
-
 set multiplot layout 1, 2;
 set title "pi estimate"
 set xlabel "Iterations"
