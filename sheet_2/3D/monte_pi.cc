@@ -32,8 +32,8 @@ int main() {
 		const double zt = gen_rand();
 		++number_generated;
 		if (in_sphere(xt, yt, zt)) ++number_in_sphere;
-		if (i % 500 == 0) myfile1 << i + 1 << " " << std::setprecision(9) << 0.75 * 8 * (double) number_in_sphere / number_generated << std::endl;
-		if (i % 500 == 0) myfile2 << i + 1 << " " << std::setprecision(9) << 1. / pi * 0.75 * 8 * (double) number_in_sphere / number_generated << std::endl;
+		if (i % 1000 == 0) myfile1 << i + 1 << " " << std::setprecision(9) << 0.75 * 8 * (double) number_in_sphere / number_generated << std::endl;
+		if (i % 1000 == 0) myfile2 << i + 1 << " " << std::setprecision(9) << 1. / pi * 0.75 * 8 * (double) number_in_sphere / number_generated << std::endl;
 	}
 	return 0;
 }
