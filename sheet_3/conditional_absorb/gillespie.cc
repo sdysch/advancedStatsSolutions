@@ -32,12 +32,24 @@ bool absorbed_end(bool* pos, const int length) {// determine if the particle has
 	return false;
 }
 
-double shuffle(bool* pos, const int length) {// main implementation of gillespie
-	if (!
+int shuffle(bool* pos, const int length, double& time) {// determines possible states to move to, increments time, returns position of new state
+	const double rate = 0.05;// transition rate, W+- fixed @ 0.05
+	const double lambda = rate + rate;
+	time += get_random_expo(lambda);// increment time drawn from expo distribution
+	int current_position;
+	for (int n = 0; n < length; ++n) {// get current position
+		if(pos[n]) {
+			current_position = n;
+		}
+	}
+	const double p = get_random();// random number between 0 and 1
+	if (p < rate / lambda) {// p < 1/2 in default case
+		return current_position + 1;
+	}
+	else return current_position - 1;
 }
 
 int main() {
-	const double rate = 0.05;
 	const int N = 100;
 	const int initial_n = 10;// initial position 
 	double t = 0;// start at 0 time
@@ -53,6 +65,17 @@ int main() {
 		}
 	}
 //=============================== MAIN CODE ================================================================//
-	shuffle(positions, N);
+	while(true) {
+		if (!absorbed_beginning(positions, N) && !absorbed_end(positions, N)) {
+			const int new_position = shuffle(positions, N, t);
+			for (int n = 0; n < N; ++n) {// change positions over
+				if(positions[n]) {
+					positions[n] = false;
+				}
+			}
+			positions[new_position] = true;
+			std::cout << new_position << std::endl;
+		}
+	}
 	return 0;
 }
