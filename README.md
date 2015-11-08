@@ -11,4 +11,4 @@ Shows that the average of N random numbers generated in several batches produces
 Monte Carlo estimations of pi done in 2D and 3D space
 
 ## Sheet 3
-Gillespie algorithm implementation
+Gillespie algorithm implementation for a random walk with equal transition rates
