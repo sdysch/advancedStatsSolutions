@@ -62,7 +62,7 @@ int shuffle(bool* pos, const int length, double& time) {// determines possible s
 }
 
 int main() {
-	const int runs = 100;// number of gillespie simulations to run
+	const int runs = 5000;// number of gillespie simulations to run
 	const int N = 100;
 	const int initial_n = 10;// initial position 
 	double t = 0;// start at 0 time

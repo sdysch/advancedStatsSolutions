@@ -24,13 +24,13 @@ void plot() {
 		++entries2;
 	}
 	
-	std::cout << "Mean end absorb time = " << (double) sum2 / entries2 << std::endl;	
+	std::cout << "Mean absorb time = " << (double) sum2 / entries2 << std::endl;	
 
 	f1.close();
 	f2.close();
 
-	TH1D* h1 = new TH1D("Absorbtion at end", "Absorbtion at end", 50, min1, max1);// declare histograms
-	TH1D* h2 = new TH1D("Absorbtion", "Absorbtion", 50, min2, max2);// declare histograms
+	TH1D* h1 = new TH1D("Conditional absorption", "Conditional absorption", 50, min1 - 100, max1 + 100);// declare histograms
+	TH1D* h2 = new TH1D("Unconditional absorption", "Unonditional absorption", 50, min2, max2);// declare histograms
 
 	std::ifstream f1("absorbed_end.dat");
 	std::ifstream f2("absorbed.dat");
