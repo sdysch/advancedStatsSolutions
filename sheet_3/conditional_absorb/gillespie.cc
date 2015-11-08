@@ -32,6 +32,18 @@ bool absorbed_end(bool* pos, const int length) {// determine if the particle has
 	return false;
 }
 
+void initial_conditions(bool* pos, const int length, const int ni, double& time) {// initialise array to initial conditions
+	time = 0;
+	for (int n = 0; n < length; ++n) {// initialise initial conditions -> position[i] = delta(i,n_initial)
+		if (n == ni) {
+			pos[n] = true;
+		}
+		else {
+			pos[n] = false;
+		}
+	}
+}
+
 int shuffle(bool* pos, const int length, double& time) {// determines possible states to move to, increments time, returns position of new state
 	const double rate = 0.05;// transition rate, W+- fixed @ 0.05
 	const double lambda = rate + rate;
@@ -50,32 +62,40 @@ int shuffle(bool* pos, const int length, double& time) {// determines possible s
 }
 
 int main() {
+	const int runs = 100;// number of gillespie simulations to run
 	const int N = 100;
 	const int initial_n = 10;// initial position 
 	double t = 0;// start at 0 time
-
-//==============================================================================================================//
 	bool positions[N];// array of positions
-	for (int n = 0; n < N; ++n) {// initialise initial conditions -> position[i] = delta(i,n_initial)
-		if (n == initial_n) {
-			positions[n] = true;
-		}
-		else {
-			positions[n] = false;
-		}
-	}
-//=============================== MAIN CODE ================================================================//
-	while(true) {
-		if (!absorbed_beginning(positions, N) && !absorbed_end(positions, N)) {
-			const int new_position = shuffle(positions, N, t);
-			for (int n = 0; n < N; ++n) {// change positions over
-				if(positions[n]) {
-					positions[n] = false;
+
+	std::ofstream abs_end;
+	abs_end.open("absorbed_end.dat");
+	std::ofstream abs;
+	abs.open("absorbed.dat");
+
+	for (int i = 0; i < runs; ++i) {
+		initial_conditions(positions, N, initial_n, t);
+		while (true) {	
+			if (!absorbed_beginning(positions, N) && !absorbed_end(positions, N)) {
+				const int new_position = shuffle(positions, N, t);
+				for (int n = 0; n < N; ++n) {// change positions over
+					if(positions[n]) {
+						positions[n] = false;
+					}
 				}
+				positions[new_position] = true;
+				//std::cout << new_position << std::endl;
 			}
-			positions[new_position] = true;
-			std::cout << new_position << std::endl;
+			else {
+				abs << t << std::endl;
+				if (absorbed_end(positions, N)) {
+					abs_end << t << std::endl;
+				}				
+				break;
+			}
 		}
 	}
+	abs_end.close();
+	abs.close();
 	return 0;
 }
