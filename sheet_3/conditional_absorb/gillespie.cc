@@ -31,6 +31,11 @@ bool absorbed_end(bool* pos, const int length) {// determine if the particle has
 	}
 	return false;
 }
+
+double shuffle(bool* pos, const int length) {// main implementation of gillespie
+	if (!
+}
+
 int main() {
 	const double rate = 0.05;
 	const int N = 100;
@@ -48,13 +53,6 @@ int main() {
 		}
 	}
 //=============================== MAIN CODE ================================================================//
-	
-	std::cout << absorbed_beginning(positions, N) << " " << absorbed_end(positions, N) << std::endl;		
-	positions[initial_n] = false;
-	positions[0] = true;
-	std::cout << absorbed_beginning(positions, N) << " " << absorbed_end(positions, N) << std::endl;
-	positions[0] = false;
-	positions[N - 1] = true;
-	std::cout << absorbed_beginning(positions, N) << " " << absorbed_end(positions, N) << std::endl;
+	shuffle(positions, N);
 	return 0;
 }
