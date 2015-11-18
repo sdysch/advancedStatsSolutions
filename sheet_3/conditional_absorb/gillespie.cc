@@ -2,6 +2,7 @@
 #include <cmath>
 #include <random>
 #include <fstream>
+#include <thread>
 
 double get_random() {// uniform random number between 0 and 1
 	std::random_device rd;
@@ -62,7 +63,7 @@ int shuffle(bool* pos, const int length, double& time) {// determines possible s
 }
 
 int main() {
-	const int runs = 5000;// number of gillespie simulations to run
+	const int runs = 10000;// number of gillespie simulations to run
 	const int N = 100;
 	const int initial_n = 10;// initial position 
 	double t = 0;// start at 0 time

@@ -1,4 +1,4 @@
 all:
-	g++ -std=c++11 gillespie.cc -o gillespie
+	g++ -std=c++11 -pthread gillespie.cc -o gillespie
 clean:
 	rm gillespie

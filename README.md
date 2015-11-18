@@ -13,3 +13,6 @@ Monte Carlo estimations of pi done in 2D and 3D space
 ## Sheet 3
 Gillespie algorithm implementation for a random walk with equal transition rates
 Added a "test" where initial condition is halfway -> would expect conditional absorbtion events ~ 0.5 unconditional absorbtion events (when transition rates are equal). This is the case!
+
+## Sheet 4
+Euler integrate the Brusselator
