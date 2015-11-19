@@ -16,3 +16,5 @@ Added a "test" where initial condition is halfway -> would expect conditional ab
 
 ## Sheet 4
 Euler integrate the Brusselator
+Gillespie simulation of Brusselator - doesn't work!
+Euler integration of coexistence game
